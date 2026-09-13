@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://akincy.com',
+  site: 'https://wiserrise.com',
   trailingSlash: 'never',
   build: {
     // /tr/index.html -> served at /tr (matches existing canonicals)

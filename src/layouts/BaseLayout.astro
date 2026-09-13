@@ -36,7 +36,7 @@ const {
 /** Only locales that actually have this page get an hreflang tag. */
 const availableIn = routeLocales(route);
 
-const site = Astro.site?.origin ?? 'https://akincy.com';
+const site = Astro.site?.origin ?? 'https://wiserrise.com';
 const abs = (p: string) => new URL(p, site).href;
 
 const withSlug = (l: Locale) => routePath(l, route) + (slug ? `/${slug}` : '');
@@ -130,8 +130,8 @@ const phone = CONTACT_PHONE[locale];
   <header class="nav">
     <div class="container nav-inner">
       <a href={home} class="brand">
-        <img src="/images/logo.svg" alt="Akincy logo" class="brand-logo" />
-        <span>AKINCY<span class="dot">.</span></span>
+        <img src="/images/logo.svg" alt="Wiserrise logo" class="brand-logo" />
+        <span>WISERRISE<span class="dot">.</span></span>
       </a>
 
       <button class="menu-toggle" id="menuToggle" type="button" aria-label={strings.menuLabel}>
@@ -166,8 +166,8 @@ const phone = CONTACT_PHONE[locale];
     <div class="container footer-inner">
       <div class="footer-left">
         <div class="footer-brand">
-          <img src="/images/logo.svg" alt="Akincy" class="footer-logo" />
-          <div class="footer-title">AKINCY<span class="dot">.</span></div>
+          <img src="/images/logo.svg" alt="Wiserrise" class="footer-logo" />
+          <div class="footer-title">WISERRISE<span class="dot">.</span></div>
         </div>
 
         <div>{strings.footer.tagline}</div>
@@ -177,7 +177,7 @@ const phone = CONTACT_PHONE[locale];
         </div>
 
         <div style="margin-top:10px; font-size:13px; color:#85827A;">
-          © <span class="js-year">{year}</span> Akincy. {strings.footer.rights}
+          © <span class="js-year">{year}</span> Wiserrise. {strings.footer.rights}
         </div>
       </div>
 

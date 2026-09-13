@@ -2,7 +2,7 @@ import type { Locale } from '../i18n/config';
 import { localeHome } from '../i18n/config';
 import { CONTACT_EMAIL } from '../i18n/ui';
 
-const SITE = 'https://akincy.com';
+const SITE = 'https://wiserrise.com';
 
 /**
  * Stable @id for the organisation entity. Every page's schema points back at
@@ -26,9 +26,9 @@ const SAME_AS = [GBP_URL];
 const PHONE = '+90 545 505 23 86';
 
 const DESCRIPTION: Record<Locale, string> = {
-  en: 'Akincy helps local businesses rank higher on Google Maps, outrank nearby competitors, and turn visibility into real leads.',
-  tr: 'Akincy, yerel işletmelerin Google Haritalar’da üst sıralara çıkmasını, yakın rakiplerini geçmesini ve görünürlüğü gerçek müşteriye dönüştürmesini sağlar.',
-  de: 'Akincy hilft lokalen Unternehmen, bei Google Maps besser zu ranken, Wettbewerber in der Nähe zu überholen und Sichtbarkeit in echte Anfragen zu verwandeln.',
+  en: 'Wiserrise helps local businesses rank higher on Google Maps, outrank nearby competitors, and turn visibility into real leads.',
+  tr: 'Wiserrise, yerel işletmelerin Google Haritalar’da üst sıralara çıkmasını, yakın rakiplerini geçmesini ve görünürlüğü gerçek müşteriye dönüştürmesini sağlar.',
+  de: 'Wiserrise hilft lokalen Unternehmen, bei Google Maps besser zu ranken, Wettbewerber in der Nähe zu überholen und Sichtbarkeit in echte Anfragen zu verwandeln.',
 };
 
 /** Service-area business: no public street address, so we declare the areas served. */
@@ -170,8 +170,8 @@ export function organizationNode(locale: Locale) {
   return {
     '@type': 'ProfessionalService',
     '@id': ORG_ID,
-    name: 'Akincy',
-    alternateName: 'Akincy Dijital Pazarlama',
+    name: 'Wiserrise',
+    alternateName: 'Wiserrise Dijital Pazarlama',
     url: `${SITE}${localeHome(locale)}`,
     logo: {
       '@type': 'ImageObject',
@@ -193,7 +193,7 @@ export function websiteNode(locale: Locale) {
     '@type': 'WebSite',
     '@id': WEBSITE_ID,
     url: SITE,
-    name: 'Akincy',
+    name: 'Wiserrise',
     inLanguage: locale,
     publisher: { '@id': ORG_ID },
   };
