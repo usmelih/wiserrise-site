@@ -1,6 +1,46 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { orgSchema } from '../../lib/schema';
+import { homeSchema, type FaqEntry } from '../../lib/schema';
+
+/**
+ * Tek kaynak: hem görünen SSS bloğu hem `FAQPage` şeması buradan üretilir.
+ * Google, FAQ işaretlemesinin sayfada GÖRÜNEN metinle birebir aynı olmasını
+ * şart koşar; iki ayrı liste tutmak er geç kayar.
+ */
+const faq: FaqEntry[] = [
+  {
+    q: 'Wie lange dauert lokale SEO?',
+    a: 'Die meisten Unternehmen sehen erste Bewegung in 4–8 Wochen, mit stärkeren Ergebnissen, die sich über 3–6 Monate aufbauen.',
+  },
+  {
+    q: 'Arbeiten Sie nur mit einer Stadt?',
+    a: 'Nein. Wir unterstützen lokale SEO-Kampagnen für einzelne Städte, mehrere Städte und mehrere Standorte – je nach Ihrem Wachstumsmodell.',
+  },
+  {
+    q: 'Garantieren Sie Rankings?',
+    a: 'Ja – Top 3 bei Google in 90 Tagen, garantiert.',
+  },
+  {
+    q: 'Was bekomme ich bei der kostenlosen Analyse?',
+    a: 'Sie erhalten eine klare Auswertung Ihres Google-Unternehmensprofils, lokaler Sichtbarkeitsprobleme, Wettbewerbslücken und der wirkungsvollsten nächsten Schritte.',
+  },
+  {
+    q: 'Was ist das Local Pack?',
+    a: 'Das Local Pack ist der Kartenblock mit drei Unternehmen, den Google bei einer lokalen Suche über den normalen Suchergebnissen zeigt. Diese drei Einträge bekommen die meisten Anrufe – genau dorthin zielt lokale SEO.',
+  },
+  {
+    q: 'Was unterscheidet lokale SEO von klassischer SEO?',
+    a: 'Klassische SEO bringt eine Webseite in den Suchergebnissen nach vorn. Lokale SEO bringt ein Unternehmen an einem Ort nach vorn: Die Suchmaschine bewertet neben Ihrer Website auch Ihr Google-Unternehmensprofil, Ihre Bewertungen und Ihre Entfernung zum Suchenden.',
+  },
+  {
+    q: 'Brauche ich für lokale SEO eine Website?',
+    a: 'Sie können auch ohne Website im Local Pack ranken, stoßen aber an eine Grenze. Die Website belegt, dass Sie für genau diese Leistungen und Stadtteile relevant sind – und dort wird lokale Suche zu einer Buchung oder einem Anruf.',
+  },
+  {
+    q: 'Wie messen Sie den Fortschritt?',
+    a: 'Wir messen Ihr Ranking über ein Raster von Punkten rund um Ihren Standort statt an einem einzelnen Mittelpunkt, denn ein lokales Suchergebnis ändert sich mit der Entfernung des Suchenden. Sie sehen die ganze Karte, dazu Anrufe, Routenanfragen und Profilaufrufe.',
+  },
+];
 
 const locale = 'de' as const;
 ---
@@ -9,14 +49,22 @@ const locale = 'de' as const;
   locale={locale}
   route="home"
   title="Wiserrise | Lokale SEO & Google Maps Wachstum"
-  description="Wiserrise hilft lokalen Unternehmen, bei Google Maps höher zu ranken, lokale Wettbewerber zu überholen und Sichtbarkeit in echte Anfragen zu verwandeln."
+  description="Lokale SEO für das Google Maps Local Pack: Wiserrise bringt lokale Unternehmen in die Top 3, vor die Wettbewerber nebenan, und macht Sichtbarkeit zu echten Anfragen."
   ogImage="/images/og-image.png"
 >
   <script
     slot="schema"
     type="application/ld+json"
     is:inline
-    set:html={JSON.stringify(orgSchema(locale))}
+    set:html={JSON.stringify(
+      homeSchema({
+        locale,
+        name: 'Wiserrise | Lokale SEO & Google Maps Wachstum',
+        description:
+          'Lokale SEO für das Google Maps Local Pack: Wiserrise bringt lokale Unternehmen in die Top 3, vor die Wettbewerber nebenan, und macht Sichtbarkeit zu echten Anfragen.',
+        faq,
+      }),
+    )}
   />
 
    <section class="hero" id="contact">
@@ -31,6 +79,7 @@ const locale = 'de' as const;
 </div>
 
       <h1>
+  <span class="h1-kicker">Lokale SEO</span>
   Beherrschen Sie Ihre <span class="highlight">Stadt</span><br>
   bei <span class="google-font">Google</span>
 </h1>
@@ -390,6 +439,69 @@ const locale = 'de' as const;
   </div>
 </section>
 
+<section id="was-ist-lokale-seo" class="reveal">
+  <div class="container">
+
+    <div class="section-head center">
+      <span class="eyebrow">Die Arbeit Hinter Dem Ranking</span>
+      <h2>Was <span class="highlight">lokale SEO</span> wirklich ist</h2>
+      <p>Kein Fachjargon. Das ist die Arbeit, die wir leisten – und die die Karte bewegt.</p>
+    </div>
+
+    <div class="explainer">
+      <p>
+        Lokale SEO ist die Arbeit, ein Unternehmen an einem Ort zur offensichtlichen
+        Antwort zu machen. Jemand in der Nähe sucht, was Sie anbieten. Google wählt drei
+        Unternehmen für das Local Pack – den Kartenblock über den normalen
+        Suchergebnissen. Diese drei bekommen die Anrufe, alle anderen werden
+        weggescrollt.
+      </p>
+      <p>
+        Google entscheidet nach Relevanz, Entfernung und Bekanntheit. Ihr Ladenlokal
+        können Sie nicht verschieben, also arbeitet lokale SEO an den beiden anderen. Wir
+        machen das Unternehmen relevant für die Suchanfragen, die wirklich Umsatz
+        bringen, und bekannt genug, dass die Suchmaschine ihm mehr vertraut als dem
+        Wettbewerber nebenan.
+      </p>
+      <p>Das sind sechs konkrete Aufgaben, der Reihe nach:</p>
+
+      <ul class="explainer-list">
+        <li>
+          <strong>Google-Unternehmensprofil</strong> — Kategorien, Leistungen,
+          Einzugsgebiet, Fotos und Beiträge, so eingerichtet, wie das Local Pack sie
+          tatsächlich liest.
+        </li>
+        <li>
+          <strong>Bewertungen</strong> — ein stetiger, ehrlicher Fluss, sauber
+          beantwortet. Das ist das stärkste Bekanntheitssignal, das Sie steuern können.
+        </li>
+        <li>
+          <strong>Lokale Landingpages</strong> — eine echte Seite je Leistung und je
+          Stadtteil, damit eine lokale Suche etwas Konkretes zum Abgleichen hat.
+        </li>
+        <li>
+          <strong>Brancheneinträge</strong> — Name, Adresse und Telefonnummer überall
+          identisch, damit die Suchmaschine sicher ist: ein Unternehmen, nicht drei.
+        </li>
+        <li>
+          <strong>Technische Basis</strong> — eine schnelle, crawlbare Website, denn eine
+          langsame Seite verliert den Klick, den sie gerade gewonnen hat.
+        </li>
+        <li>
+          <strong>Raster-Rankingmessung</strong> — gemessen über Ihr gesamtes Gebiet statt
+          an einem Mittelpunkt, damit Sie sehen, wo Sie wirklich stehen.
+        </li>
+      </ul>
+
+      <p>
+        Nichts davon ist ein Trick. Es sind dieselben sechs Aufgaben, jede Woche sauber
+        erledigt – bis die Karte sich bewegt.
+      </p>
+    </div>
+
+  </div>
+</section>
+
 <section id="faq" class="reveal">
   <div class="container">
     <div class="faq-pill-wrap">
@@ -401,37 +513,15 @@ const locale = 'de' as const;
       <p>Klare Antworten, bevor Sie Ihre Analyse buchen.</p>
     </div>
 
-    <details class="faq-item">
-      <summary>
-        <span>Wie lange dauert lokale SEO?</span>
-        <div class="faq-icon">+</div>
-      </summary>
-      <p>Die meisten Unternehmen sehen erste Bewegung in 4–8 Wochen, mit stärkeren Ergebnissen, die sich über 3–6 Monate aufbauen.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary>
-        <span>Arbeiten Sie nur mit einer Stadt?</span>
-        <div class="faq-icon">+</div>
-      </summary>
-      <p>Nein. Wir unterstützen lokale SEO-Kampagnen für einzelne Städte, mehrere Städte und mehrere Standorte – je nach Ihrem Wachstumsmodell.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary>
-        <span>Garantieren Sie Rankings?</span>
-        <div class="faq-icon">+</div>
-      </summary>
-      <p>Ja – Top 3 bei Google in 90 Tagen, garantiert.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary>
-        <span>Was bekomme ich bei der kostenlosen Analyse?</span>
-        <div class="faq-icon">+</div>
-      </summary>
-      <p>Sie erhalten eine klare Auswertung Ihres Google-Unternehmensprofils, lokaler Sichtbarkeitsprobleme, Wettbewerbslücken und der wirkungsvollsten nächsten Schritte.</p>
-    </details>
+    {faq.map((f) => (
+      <details class="faq-item">
+        <summary>
+          <span>{f.q}</span>
+          <div class="faq-icon">+</div>
+        </summary>
+        <p>{f.a}</p>
+      </details>
+    ))}
   </div>
 </section>
 

@@ -299,6 +299,21 @@ h1 {
   letter-spacing: -1px;
 }
 
+/* Başlığın üstündeki küçük satır. Hedef anahtar kelimeyi `h1` metninin İÇİNE
+   taşır (Semrush 2026-09-18: "H1 tag does not contain your target keyword")
+   ama görsel hiyerarşiyi bozmaz — büyük satır hâlâ tek bir marka vaadi.
+   `h1`den gelen -1px letter-spacing ve 1.02 line-height burada geri alınır. */
+.h1-kicker {
+  display: block;
+  font-size: clamp(12px, 1.4vw, 15px);
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 12px;
+}
+
 .hero p {
   max-width: 620px;
   color: var(--muted);
@@ -2587,4 +2602,62 @@ footer {
 }
 .footer-phone:hover {
   color: var(--accent);
+}
+
+/* =========================
+   EXPLAINER — ana sayfadaki "yerel SEO nedir" bölümü
+   Semrush 2026-09-18: rakiplere göre düşük kelime sayısı + eksik anlamsal
+   kelimeler. Doldurma metinle değil, gerçekten anlatan bir bölümle kapatıldı.
+========================= */
+.explainer {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.explainer > p {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.75;
+  margin: 0 0 18px;
+}
+
+.explainer-list {
+  list-style: none;
+  margin: 26px 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.explainer-list li {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--ink-border);
+  border-radius: 14px;
+  padding: 16px 18px 16px 46px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.explainer-list li::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 25px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.explainer-list strong {
+  color: var(--text);
+  font-weight: 650;
+}
+
+@media (max-width: 640px) {
+  .explainer > p { font-size: 16px; }
+  .explainer-list li { padding: 14px 16px 14px 40px; }
+  .explainer-list li::before { left: 16px; top: 23px; }
 }

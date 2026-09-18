@@ -199,9 +199,57 @@ export function websiteNode(locale: Locale) {
   };
 }
 
-export function orgSchema(locale: Locale) {
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [organizationNode(locale), websiteNode(locale)],
-  };
+/**
+ * Schema for the home page.
+ *
+ * Semrush ("ideas" export, 2026-09-18) asked for an `aggregateRating` on this
+ * page to win review stars. That is NOT implemented, deliberately: Google's
+ * structured-data policy requires rating markup to reflect genuine reviews
+ * that are visible on the page, and self-serving reviews about your own
+ * business have not been rich-result eligible since 2019. Inventing a rating
+ * to earn stars is spammy structured markup and risks a manual action.
+ *
+ * What this does instead is the legitimate half of the same recommendation:
+ * the home page had no `WebPage` node at all, and its FAQ block was not marked
+ * up. Both are real rich-result opportunities that cost nothing in risk.
+ */
+export function homeSchema(opts: {
+  locale: Locale;
+  name: string;
+  description: string;
+  faq?: FaqEntry[];
+}) {
+  const url = `${SITE}${localeHome(opts.locale)}`;
+  const graph: Record<string, unknown>[] = [
+    organizationNode(opts.locale),
+    websiteNode(opts.locale),
+    {
+      '@type': 'WebPage',
+      '@id': `${url}#webpage`,
+      url,
+      name: opts.name,
+      description: opts.description,
+      isPartOf: { '@id': WEBSITE_ID },
+      about: { '@id': ORG_ID },
+      inLanguage: opts.locale,
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: `${SITE}${opts.locale === 'tr' ? '/images/og-image-tr.png' : '/images/og-image.png'}`,
+      },
+    },
+  ];
+
+  if (opts.faq?.length) {
+    graph.push({
+      '@type': 'FAQPage',
+      '@id': `${url}#faq`,
+      mainEntity: opts.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    });
+  }
+
+  return { '@context': 'https://schema.org', '@graph': graph };
 }

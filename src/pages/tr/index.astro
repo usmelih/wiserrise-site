@@ -1,6 +1,46 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { orgSchema } from '../../lib/schema';
+import { homeSchema, type FaqEntry } from '../../lib/schema';
+
+/**
+ * Tek kaynak: hem görünen SSS bloğu hem `FAQPage` şeması buradan üretilir.
+ * Google, FAQ işaretlemesinin sayfada GÖRÜNEN metinle birebir aynı olmasını
+ * şart koşar; iki ayrı liste tutmak er geç kayar.
+ */
+const faq: FaqEntry[] = [
+  {
+    q: 'Yerel SEO ne kadar sürer?',
+    a: 'Çoğu işletme 4–8 hafta içinde hareket görmeye başlar. Daha güçlü sonuçlar genelde 90 gün içinde birikir.',
+  },
+  {
+    q: 'Sadece tek şehirle mi çalışıyorsunuz?',
+    a: 'Hayır. Tek şehir, çok şehir ve çok lokasyonlu yerel SEO yapılarıyla çalışabiliyoruz.',
+  },
+  {
+    q: 'Sıralama garantisi veriyor musunuz?',
+    a: 'Evet. Google’da 90 gün içinde ilk 3 garantisi veriyoruz.',
+  },
+  {
+    q: 'Ücretsiz analiz içinde neler var?',
+    a: 'Google İşletme Profili, yerel görünürlük sorunları, rakip farkları ve en yüksek etkili sonraki adımların özeti.',
+  },
+  {
+    q: 'Yerel paket (local pack) nedir?',
+    a: 'Yerel paket, Google arama sonuçlarında normal sonuçların üstünde çıkan ve üç işletme gösteren harita kutusudur. Aramaların çoğu o üç kayda gider; yerel SEO’nun bütün amacı oraya girmektir.',
+  },
+  {
+    q: 'Yerel SEO ile normal SEO arasındaki fark ne?',
+    a: 'Normal SEO bir web sayfasını arama sonuçlarında yarıştırır. Yerel SEO ise bir işletmeyi bir yerde yarıştırır: Google arama motoru web sitenizin yanı sıra İşletme Profilinizi, yorumlarınızı ve arayan kişiye olan mesafenizi de tartar.',
+  },
+  {
+    q: 'Yerel SEO için web sitesi şart mı?',
+    a: 'Web siteniz olmadan da yerel pakette çıkabilirsiniz ama bir yerde tıkanırsınız. Site, hedef anahtar kelimeyi ve hizmet verdiğiniz bölgeleri somut olarak kanıtladığınız yerdir; sitenizin arama trafiğini randevuya veya telefona çeviren yer de orasıdır.',
+  },
+  {
+    q: 'İlerlemeyi nasıl ölçüyorsunuz?',
+    a: 'Sıralamayı tek merkez noktadan değil, işletmenizin çevresine yayılmış bir nokta ızgarasından ölçeriz; çünkü yerel sonuç arayan kişinin mesafesine göre değişir. Haritanın tamamını, ayrıca arama, yol tarifi ve profil görüntüleme sayılarını görürsünüz.',
+  },
+];
 
 const locale = 'tr' as const;
 ---
@@ -9,14 +49,22 @@ const locale = 'tr' as const;
   locale={locale}
   route="home"
   title="Wiserrise | Yerel SEO & Google Maps Optimizasyonu"
-  description="Wiserrise, yerel işletmelerin Google Haritalar'da üst sıralara çıkmasına, rakiplerini geçmesine ve görünürlüğü gerçek müşterilere dönüştürmesine yardımcı olur."
+  description="Google Haritalar için yerel SEO. Wiserrise işletmenizi şehrinizde ilk 3’e taşır, arama sonuçlarında rakiplerinizin önüne geçirir, görünürlüğü müşteriye çevirir."
   ogImage="/images/og-image-tr.png"
 >
   <script
     slot="schema"
     type="application/ld+json"
     is:inline
-    set:html={JSON.stringify(orgSchema(locale))}
+    set:html={JSON.stringify(
+      homeSchema({
+        locale,
+        name: 'Wiserrise | Yerel SEO & Google Maps Optimizasyonu',
+        description:
+          'Google Haritalar için yerel SEO. Wiserrise işletmenizi şehrinizde ilk 3’e taşır, arama sonuçlarında rakiplerinizin önüne geçirir, görünürlüğü müşteriye çevirir.',
+        faq,
+      }),
+    )}
   />
 
     
@@ -32,6 +80,7 @@ const locale = 'tr' as const;
 </div>
    
       <h1>
+  <span class="h1-kicker">Yerel SEO</span>
   <span class="google-font">Google</span>’da Kendi Şehrinde ilk 3 - <span class="highlight">Garantili</span><br>
 </h1>
 
@@ -389,6 +438,73 @@ const locale = 'tr' as const;
   </div>
 </section>
 
+<section id="yerel-seo-nedir" class="reveal">
+  <div class="container">
+
+    <div class="section-head center">
+      <span class="eyebrow">Sıralamanın Arkasındaki İş</span>
+      <h2><span class="highlight">Yerel SEO</span> aslında nedir?</h2>
+      <p>Jargon yok. Gerçekte ne yaptığımızı ve haritayı neyin oynattığını anlatıyoruz.</p>
+    </div>
+
+    <div class="explainer">
+      <p>
+        Yerel SEO, bir işletmeyi tek bir yerde tek doğru cevap hâline getirme işidir.
+        Yakınınızdaki biri sattığınız şeyi arar. Google, normal arama sonuçlarının
+        üstündeki harita kutusu için üç işletme seçer. Aramaları o üçü alır; geri kalanı
+        kaydırılıp geçilir. Her gün orada olmamak, potansiyel müşteriyi rakibinize
+        bırakmak demektir.
+      </p>
+      <p>
+        Google bu üçünü alaka, mesafe ve bilinirliğe göre seçer. Dükkânınızı
+        taşıyamazsınız, bu yüzden yerel SEO diğer ikisi üzerinde çalışır. İşletmeyi
+        gerçekten para getiren aramalar için alakalı hâle getiririz ve Google arama
+        motorunun onu yan sokaktakine tercih edeceği kadar bilinir yaparız.
+      </p>
+      <p>Bu iş, sırayla yapılan altı somut adıma iner:</p>
+
+      <ul class="explainer-list">
+        <li>
+          <strong>Google İşletme Profili</strong> — kategoriler, hizmetler, hizmet
+          bölgesi, fotoğraflar ve gönderiler; harita kutusunun gerçekten okuduğu
+          şekilde kurulur.
+        </li>
+        <li>
+          <strong>Yorumlar</strong> — düzenli, dürüst bir akış ve hepsine cevap.
+          Kontrol edebildiğiniz en güçlü bilinirlik sinyali budur.
+        </li>
+        <li>
+          <strong>Lokasyon bazlı sayfalar</strong> — her hizmet ve her bölge için
+          gerçek bir sayfa. Hedef anahtar kelimeyi sayfanın başlığında, metninde ve iç
+          bağlantılarında tutarlı kullanırız; böylece aramanın eşleşeceği somut bir şey
+          olur.
+        </li>
+        <li>
+          <strong>Dizin kayıtları</strong> — ad, adres ve telefon her yerde birebir
+          aynı olsun ki arama motoru bunun üç değil tek bir işletme olduğundan emin
+          olsun.
+        </li>
+        <li>
+          <strong>Teknik sağlık</strong> — hızlı ve taranabilir bir site. Google web
+          sayfalarını tarayamazsa sıralayamaz; yavaş açılan sayfa kazandığı tıklamayı
+          kaybeder.
+        </li>
+        <li>
+          <strong>Izgara sıralama takibi</strong> — tek merkez noktadan değil,
+          bölgenizin tamamına yayılmış noktalardan ölçülür; böylece gerçekte nerede
+          olduğunuzu görürsünüz.
+        </li>
+      </ul>
+
+      <p>
+        Hiçbiri numara değil. Aynı altı iş, her hafta düzgün yapılır — harita oynayana
+        kadar.
+      </p>
+    </div>
+
+  </div>
+</section>
+
 <section id="faq" class="reveal">
   <div class="container">
     <div class="faq-pill-wrap">
@@ -400,37 +516,15 @@ const locale = 'tr' as const;
       <p>Başvurmadan önce net cevaplar.</p>
     </div>
 
-    <details class="faq-item">
-      <summary>
-        <span>Local SEO ne kadar sürer?</span>
-        <div class="faq-icon">+</div>
-      </summary>
-      <p>Çoğu işletme 4–8 hafta içinde hareket görmeye başlar. Daha güçlü sonuçlar genelde 90 gün içinde birikir.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary>
-        <span>Sadece tek şehirle mi çalışıyorsunuz?</span>
-        <div class="faq-icon">+</div>
-      </summary>
-      <p>Hayır. Tek şehir, çok şehir ve çok lokasyonlu yerel SEO yapılarıyla çalışabiliyoruz.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary>
-        <span>Sıralama garantisi veriyor musunuz?</span>
-        <div class="faq-icon">+</div>
-      </summary>
-      <p>Evet. Google'da 90 gün içinde ilk 3 garantisi veriyoruz.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary>
-        <span>Ücretsiz analiz içinde neler var?</span>
-        <div class="faq-icon">+</div>
-      </summary>
-      <p>Google Business Profile, yerel görünürlük sorunları, rakip farkları ve en yüksek etkili sonraki adımların özeti.</p>
-    </details>
+    {faq.map((f) => (
+      <details class="faq-item">
+        <summary>
+          <span>{f.q}</span>
+          <div class="faq-icon">+</div>
+        </summary>
+        <p>{f.a}</p>
+      </details>
+    ))}
   </div>
 </section>
 

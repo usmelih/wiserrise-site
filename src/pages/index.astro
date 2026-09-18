@@ -1,6 +1,46 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { orgSchema } from '../lib/schema';
+import { homeSchema, type FaqEntry } from '../lib/schema';
+
+/**
+ * Tek kaynak: hem görünen SSS bloğu hem `FAQPage` şeması buradan üretilir.
+ * Google, FAQ işaretlemesinin sayfada GÖRÜNEN metinle birebir aynı olmasını
+ * şart koşar; iki ayrı liste tutmak er geç kayar.
+ */
+const faq: FaqEntry[] = [
+  {
+    q: 'How long does local SEO take?',
+    a: 'Most businesses start seeing movement in 4–8 weeks, with stronger results compounding over 3–6 months.',
+  },
+  {
+    q: 'Do you only work with one city?',
+    a: 'No. We can support single-city, multi-city, and multi-location local SEO campaigns depending on your growth model.',
+  },
+  {
+    q: 'Do you guarantee rankings?',
+    a: 'Yes, Top 3 on Google in 90 Days Guaranteed.',
+  },
+  {
+    q: 'What do I get in the free audit?',
+    a: 'You get a clear review of your Google Business Profile, local visibility issues, competitive gaps, and the highest-impact next steps.',
+  },
+  {
+    q: 'What is the local pack?',
+    a: 'The local pack is the map block of three businesses that Google shows above the normal search results for a local search. Those three listings take most of the calls, which is why getting into them is the whole point of a local SEO strategy.',
+  },
+  {
+    q: 'Is local SEO different from regular SEO?',
+    a: 'Yes. Regular SEO competes for a web page in the search results. Local SEO competes for a business in a place, so the search engine weighs your Google Business Profile, your reviews and your distance from the searcher alongside your website.',
+  },
+  {
+    q: 'Do I need a website for local SEO?',
+    a: 'You can rank in the local pack without one, but you will plateau. The website is what proves you are relevant for the exact services and neighbourhoods you want, and it is where local search traffic turns into a booking or a call.',
+  },
+  {
+    q: 'How do you measure progress?',
+    a: 'We track your rank across a grid of points around your location instead of a single centre point, because a local search result changes with the searcher’s distance. You see the whole map, plus calls, direction requests and profile views.',
+  },
+];
 
 const locale = 'en' as const;
 ---
@@ -9,14 +49,22 @@ const locale = 'en' as const;
   locale={locale}
   route="home"
   title="Wiserrise | Local SEO & Google Maps Growth"
-  description="Wiserrise helps local businesses rank higher on Google Maps, outrank nearby competitors, and turn visibility into real leads."
+  description="Local SEO built for the Google Maps local pack. Wiserrise gets local businesses into the top 3, ahead of nearby competitors, and turns visibility into real leads."
   ogImage="/images/og-image.png"
 >
   <script
     slot="schema"
     type="application/ld+json"
     is:inline
-    set:html={JSON.stringify(orgSchema(locale))}
+    set:html={JSON.stringify(
+      homeSchema({
+        locale,
+        name: 'Wiserrise | Local SEO & Google Maps Growth',
+        description:
+          'Local SEO built for the Google Maps local pack. Wiserrise gets local businesses into the top 3, ahead of nearby competitors, and turns visibility into real leads.',
+        faq,
+      }),
+    )}
   />
 
     
@@ -33,6 +81,7 @@ const locale = 'en' as const;
 </div>
    
       <h1>
+  <span class="h1-kicker">Local SEO</span>
   Own Your <span class="highlight">City</span><br>
   on <span class="google-font">Google</span>
 </h1>
@@ -384,6 +433,66 @@ const locale = 'en' as const;
   </div>
 </section>
 
+<section id="what-is-local-seo" class="reveal">
+  <div class="container">
+
+    <div class="section-head center">
+      <span class="eyebrow">The Work Behind The Ranking</span>
+      <h2>What <span class="highlight">local SEO</span> really is</h2>
+      <p>No jargon. This is the work we actually do, and why it moves the map.</p>
+    </div>
+
+    <div class="explainer">
+      <p>
+        Local SEO is the work of making one business the obvious answer in one place.
+        Someone nearby searches for what you sell. Google picks three businesses for
+        the local pack — the map block that sits above the normal search results — and
+        those three get the calls. Everyone else gets scrolled past.
+      </p>
+      <p>
+        Google chooses those three on relevance, distance and prominence. You cannot
+        move your shop, so a local SEO strategy works the other two. We make the
+        business relevant for the searches that actually bring money, and prominent
+        enough that the search engine trusts it over the one next door.
+      </p>
+      <p>That comes down to six concrete jobs, done in order:</p>
+
+      <ul class="explainer-list">
+        <li>
+          <strong>Google Business Profile</strong> — categories, services, service
+          area, photos and posts, set up the way the local pack actually reads them.
+        </li>
+        <li>
+          <strong>Reviews</strong> — a steady, honest flow, answered properly. This is
+          the strongest prominence signal you control.
+        </li>
+        <li>
+          <strong>Local landing pages</strong> — one real page per service and per
+          area, so a local search has something specific to match.
+        </li>
+        <li>
+          <strong>Citations</strong> — name, address and phone identical everywhere, so
+          the search engine is confident this is one business, not three.
+        </li>
+        <li>
+          <strong>Technical health</strong> — a fast, crawlable site, because a page
+          that loads slowly loses the click it just won.
+        </li>
+        <li>
+          <strong>Grid rank tracking</strong> — measured across your whole area instead
+          of one centre point, so you see where you really rank.
+        </li>
+      </ul>
+
+      <p>
+        None of it is a trick. It is the same six jobs, done properly, every week,
+        until the map moves.
+      </p>
+    </div>
+
+  </div>
+</section>
+
 <section id="faq" class="reveal">
   <div class="container">
 
@@ -396,37 +505,15 @@ const locale = 'en' as const;
       <p>Clear answers before you book your audit.</p>
     </div>
 
-    <details class="faq-item">
-      <summary>
-        <span>How long does local SEO take?</span>
-        <div class="faq-icon">+</div>
-      </summary>
-      <p>Most businesses start seeing movement in 4–8 weeks, with stronger results compounding over 3–6 months.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary>
-        <span>Do you only work with one city?</span>
-        <div class="faq-icon">+</div>
-      </summary>
-      <p>No. We can support single-city, multi-city, and multi-location local SEO campaigns depending on your growth model.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary>
-        <span>Do you guarantee rankings?</span>
-        <div class="faq-icon">+</div>
-      </summary>
-      <p>Yes, Top 3 on Google in 90 Days Guaranteed.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary>
-        <span>What do I get in the free audit?</span>
-        <div class="faq-icon">+</div>
-      </summary>
-      <p>You get a clear review of your Google Business Profile, local visibility issues, competitive gaps, and the highest-impact next steps.</p>
-    </details>
+    {faq.map((f) => (
+      <details class="faq-item">
+        <summary>
+          <span>{f.q}</span>
+          <div class="faq-icon">+</div>
+        </summary>
+        <p>{f.a}</p>
+      </details>
+    ))}
 
   </div>
 </section>
