@@ -73,9 +73,9 @@ export function t(locale: Locale) {
 
 /** Contact address differs per locale on the live site. */
 export const CONTACT_EMAIL: Record<Locale, string> = {
-  en: 'audit@akincy.com',
-  tr: 'melih@akincy.com',
-  de: 'melih@akincy.com',
+  en: 'audit@wiserrise.com',
+  tr: 'melih@wiserrise.com',
+  de: 'melih@wiserrise.com',
 };
 
 /**
